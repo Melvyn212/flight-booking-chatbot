@@ -2,17 +2,16 @@ import os
 import pandas as pd
 import numpy as np
 import faiss
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+import sqlite3
+from flask import Flask, request, jsonify, render_template
 from sentence_transformers import SentenceTransformer
 import google.generativeai as genai
 
 # Initialisation de Flask
 app = Flask(__name__)
-CORS(app)  # Activer CORS pour permettre les requêtes depuis Angular
 
 # Charger les données des vols
-file_path = "data/dataset_nettoye.csv"
+file_path = "data/dataset_nettoye.csv"  # Mets le bon chemin
 df = pd.read_csv(file_path)
 
 # Générer des descriptions de vols pour l'indexation
@@ -27,7 +26,7 @@ dimension = embeddings.shape[1]
 index = faiss.IndexFlatL2(dimension)
 index.add(embeddings)
 
-# Clé API Gemini
+# Clé API Gemini (Ajoute ta clé ici)
 os.environ["GOOGLE_API_KEY"] = "AIzaSyC6PBfRhdUBCkDtva-gpevC4YTKvXhbTow"
 genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
@@ -49,13 +48,24 @@ def generate_response(query):
 
     return response.text
 
+# Route pour l'interface web
+@app.route('/')
+def home():
+    return render_template("index.html")
+
 # API pour interagir avec le chatbot
-@app.route('/api/chat', methods=['POST'])
+@app.route('/chat', methods=['POST'])
 def chat():
     data = request.json
     user_input = data.get("message", "")
     response = generate_response(user_input)
     return jsonify({"response": response})
 
+# Nouvelle route pour récupérer la liste des vols
+@app.route('/flights', methods=['GET'])
+def get_flights():
+    flights = df.to_dict(orient='records')
+    return jsonify(flights)
+
 if __name__ == "__main__":
-    app.run(debug=True, port=5000) 
+    app.run(debug=True)
