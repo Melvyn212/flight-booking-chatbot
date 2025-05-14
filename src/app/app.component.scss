@@ -1,0 +1,109 @@
+:root {
+  --beige-light: #f5f5dc;
+  --beige-medium: #e8e4c9;
+  --beige-dark: #d2c9a0;
+  --accent: #8b7355;
+  --text: #4a4a4a;
+  --shadow: rgba(139, 115, 85, 0.1);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--beige-light);
+  position: relative;
+  overflow-x: hidden;
+  
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(139, 115, 85, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(210, 201, 160, 0.05) 0%, transparent 50%),
+      linear-gradient(45deg, rgba(245, 245, 220, 0.9) 0%, rgba(232, 228, 201, 0.9) 100%);
+    animation: subtlePulse 15s ease infinite;
+    z-index: -2;
+  }
+  
+  &::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238b7355' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+    pointer-events: none;
+    animation: subtleFloat 20s linear infinite;
+    z-index: -1;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  background: var(--beige-medium);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px var(--shadow);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(139, 115, 85, 0.1);
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--text);
+  position: relative;
+  padding-bottom: 1rem;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(90deg, 
+      transparent,
+      var(--accent),
+      var(--beige-dark),
+      var(--accent),
+      transparent
+    );
+    animation: subtleFlow 3s linear infinite;
+    border-radius: 3px;
+  }
+}
+
+@keyframes subtlePulse {
+  0% {
+    background-position: 0% 0%;
+    filter: brightness(1);
+  }
+  50% {
+    background-position: 100% 100%;
+    filter: brightness(1.05);
+  }
+  100% {
+    background-position: 0% 0%;
+    filter: brightness(1);
+  }
+}
+
+@keyframes subtleFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes subtleFloat {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}

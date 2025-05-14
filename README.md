@@ -1,59 +1,114 @@
-# FlightBookingChatbot
+# Flight Booking Chatbot
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.11.
+Un chatbot moderne et interactif pour la réservation de vols, avec une interface utilisateur élégante et des fonctionnalités avancées.
 
-## Development server
+## Fonctionnalités
 
-To start a local development server, run:
+- Interface utilisateur moderne avec effets visuels 3D
+- Chat interactif pour la recherche de vols
+- Design responsive et animations fluides
+- Intégration avec une API de réservation de vols
+- Interface utilisateur intuitive et élégante
 
+## Prérequis
+
+- Node.js (version 14 ou supérieure)
+- Python 3.8 ou supérieur
+- npm ou yarn
+
+## Installation
+
+### Backend (Python/Flask)
+
+1. Naviguez vers le dossier backend :
+```bash
+cd flight-booking-chatbot/backend
+```
+
+2. Créez un environnement virtuel Python :
+```bash
+python -m venv venv
+```
+
+3. Activez l'environnement virtuel :
+- Sur Windows :
+```bash
+venv\Scripts\activate
+```
+- Sur macOS/Linux :
+```bash
+source venv/bin/activate
+```
+
+4. Installez les dépendances :
+```bash
+pip install -r requirements.txt
+```
+
+5. Lancez le serveur backend :
+```bash
+python app.py
+```
+
+### Frontend (Angular)
+
+1. Dans un nouveau terminal, naviguez vers le dossier du projet :
+```bash
+cd flight-booking-chatbot
+```
+
+2. Installez les dépendances :
+```bash
+npm install
+```
+
+3. Lancez le serveur de développement :
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+4. Ouvrez votre navigateur et accédez à `http://localhost:4200`
 
-## Code scaffolding
+## Structure du Projet
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+flight-booking-chatbot/
+├── backend/           # Serveur Flask
+│   ├── app.py        # Application principale
+│   └── requirements.txt
+├── src/              # Code source Angular
+│   ├── app/
+│   │   ├── components/
+│   │   ├── services/
+│   │   └── models/
+│   └── assets/
+└── package.json      # Dépendances Node.js
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Utilisation
 
-```bash
-ng generate --help
-```
+1. Assurez-vous que le backend est en cours d'exécution
+2. Ouvrez l'application dans votre navigateur
+3. Commencez à discuter avec le chatbot pour rechercher des vols
+4. Suivez les instructions du chatbot pour compléter votre réservation
 
-## Building
+## Technologies Utilisées
 
-To build the project run:
+- Frontend :
+  - Angular
+  - SCSS
+  - TypeScript
+  - HTML5/CSS3
 
-```bash
-ng build
-```
+- Backend :
+  - Python
+  - Flask
+  - SQLite
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Support
 
-## Running unit tests
+Pour toute question ou problème, n'hésitez pas à ouvrir une issue sur le dépôt GitHub.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Licence
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Ce projet est sous licence MIT.
